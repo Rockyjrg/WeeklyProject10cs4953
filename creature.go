@@ -11,9 +11,16 @@ type Creature struct {
 	Color     rl.Color
 	Speed     float32
 	Direction float32
-	Texture   rl.Texture2D
+	AnimationFSM
 }
 
-func (c *Creature) NewCreature() Creature {
+func (c *Creature) ApplyGravity(g rl.Vector2) {
+	c.Vel = rl.Vector2Add(c.Vel, rl.Vector2Scale(g, rl.GetFrameTime()))
+}
 
+func (c *Creature) Move(x float32) {
+	if x != 0 {
+		c.Direction = x
+	}
+	c.Vel.X = x * c.Speed
 }

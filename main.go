@@ -10,6 +10,9 @@ func main() {
 	defer rl.CloseWindow()
 	rl.SetTargetFPS(60)
 
+	//animations
+	idleAnimation := NewAnimation("idle", rl.LoadTexture("Sprites/IdleAnimation.png"), 4, .2)
+
 	for !rl.WindowShouldClose() {
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.Blue)
