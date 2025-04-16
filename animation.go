@@ -33,6 +33,8 @@ func NewAnimation(newName string, newSheet rl.Texture2D, spriteNum int, newTime 
 }
 
 func (a *Animation) UpdateTime() {
+
+	a.Timer += rl.GetFrameTime()
 	if a.Timer > a.SwitchTime {
 		a.Timer = 0
 		a.CurrentIndex++
@@ -48,7 +50,7 @@ func (a *Animation) UpdateTime() {
 }
 
 func (a Animation) DrawAnimation(pos rl.Vector2, size float32, direction float32) {
-	sourceRect := rl.NewRectangle(float32(32*a.CurrentIndex), 0, 32*direction, 16)
+	sourceRect := rl.NewRectangle(float32(32*a.CurrentIndex), 0, 32*direction, 32)
 	destRect := rl.NewRectangle(pos.X, pos.Y, size, size)
 	rl.DrawTexturePro(a.SpriteSheet, sourceRect, destRect, rl.Vector2Zero(), 0, rl.White)
 }
